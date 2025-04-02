@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-4 p-5" style="background: linear-gradient(to right, rgba(0, 198, 255, 0.6), rgba(0, 114, 255, 0.6)), url('your-background-image.jpg'); backdrop-filter: blur(8px); border-radius: 15px;">
+      <h1 class="h2 text-white text-center">Login</h1>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="mt-4">
+          <label class="col-form-label text-white">Username</label>
+          {{ form.username }}
+        </div>
+        <div class="mt-4">
+          <label class="col-form-label text-white">Password</label>
+          {{ form.password }}
+        </div>
+        <div class="mt-4">
+          {% if form.errors %}
+          <div class="error-message text-danger">
+            Your username and password did not match. Please try again.
+          </div>
+          {% endif %}
+        </div>
+        <div class="mt-4">
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </div>
+        <div class="mt-5 text-white text-center">
+          Don't have an account? 
+          <a href="{% url 'register' %}" class="login-label">Register Here.</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
