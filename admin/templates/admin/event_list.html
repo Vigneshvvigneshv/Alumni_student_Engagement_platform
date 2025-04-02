@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+  {% if perms.auth.is_admin %}
+    {% include "admin/components/sidebar.html" %}
+  {% elif perms.auth.is_alumnus %}
+    {% include "alumni/components/sidebar.html" %}
+  {% elif perms.auth.is_student %}
+    {% include "student/components/sidebar.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <h1 class="mt-5 h2">Event List</h1>
+
+  <form action="" method="get" class="mb-4">
+    <div class="input-group">
+      <input type="search" name="q" placeholder="Search based on Event Name" aria-describedby="button-addon1" class="form-control border-0 bg-light rounded-pill shadow-sm">
+      <div class="input-group-append">
+        <button id="button-addon1" type="submit" class="btn btn-link text-primary">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    {% for item in event %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-light">
+          <img src="{{ item.Image.url }}" class="card-img-top" alt="Event Image" />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.Name }}</h5>
+            <p class="card-text">{{ item.Description }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Date: {{ item.Date }}</li>
+            <li class="list-group-item">Location: {{ item.Location }}</li>
+            <li class="list-group-item">Time: {{ item.Time }}</li>
+          </ul>
+
+          {% if perms.auth.is_admin %}
+            <div class="card-body d-flex justify-content-between">
+              <a href="{% url 'update_event' pk=item.id %}" class="btn btn-warning">Edit</a>
+              <form action="{% url 'delete_event' pk=item.pk %}" method="post" onsubmit="return confirm('Are you sure you want to delete?')">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                  Delete
+                </button>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

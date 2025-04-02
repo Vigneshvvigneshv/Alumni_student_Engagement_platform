@@ -1,0 +1,76 @@
+<nav id="sidebarMenu" class="navbar-dark custom-sidebar col-md-3 col-lg-2 d-md-block sidebar-sticky collapse" style="color: white;">
+    <div class="position-sticky pt-1">
+        <div class="mb-4">
+            <button class="btn bg-transparent align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#new-collapse" aria-expanded="true" style="color: white;">
+                <span class='navbar-text' style="color: white;"><b>Dashboard</b></span>
+            </button>
+        <ul class="nav flex-column" style="color: white;">
+            <div class="mb-4">
+                <li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                        href="{% url 'home' %}" style="color: white;">
+                        <span data-feather="home" class="me-3"></span>Home
+                    </a>
+                </li>
+            </div>
+            </div>
+            <div class="position-sticky pt-1">
+                <div class="mb-4">
+                    <button class="btn bg-transparent align-items-center rounded collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#new-collapse" aria-expanded="true" style="color: white;">
+                        <span class='navbar-text' style="color: white;"><b>Lists</b></span>
+                    </button>
+                    <ul class="nav flex-column" style="color: white;">
+                        <div class="mb-4">
+                            <li class="nav-item {% if request.resolver_match.url_name == 'list_student' %}active{% endif %}">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'list_student' %}active{% endif %}"
+                                    aria-current="page" href="{% url 'list_student' %}" style="color: white;">
+                                    <span data-feather="users" class="me-3"></span>Students List
+                                </a>
+                            </li>
+                            <li class="nav-item {% if request.resolver_match.url_name == 'list_alumni' %}active{% endif %}">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'list_alumni' %}active{% endif %}"
+                                    aria-current="page" href="{% url 'list_alumni' %}" style="color: white;">
+                                    <span data-feather="users" class="me-3"></span>Alumni List
+                                </a>
+                            </li>
+                            <li class="nav-item {% if request.resolver_match.url_name == 'list_event' %}active{% endif %}">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'list_event' %}active{% endif %}"
+                                    aria-current="page" href="{% url 'list_event' %}" style="color: white;">
+                                    <span data-feather="bar-chart-2" class="me-3"></span>Event List
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+
+            <div class="mb-4">
+                <button class="btn bg-transparent align-items-center rounded collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#new-collapse" aria-expanded="true" style="color: white;">
+                    <span class='navbar-text' style="color: white;"><b>Add Details</b></span>
+                </button>
+                <div class="collapse show" id="new-collapse">
+                    <ul class="nav flex-column" style="color: white;">
+                        <li class="nav-item {% if request.resolver_match.url_name == 'new_student' %}active{% endif %}">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'new_student' %}active{% endif %}"
+                                aria-current="page" href="{% url 'new_student' %}" style="color: white;">
+                                <span data-feather="user-plus" class="me-3"></span> Add Student
+                            </a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'new_alumni' %}active{% endif %}">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'new_alumni' %}active{% endif %}"
+                                aria-current="page" href="{% url 'new_alumni' %}" style="color: white;">
+                                <span data-feather="user-plus" class="me-3"></span> Add Alumnus
+                            </a>
+                        </li>
+                        <li class="nav-item {% if request.resolver_match.url_name == 'new_event' %}active{% endif %}">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'new_event' %}active{% endif %}"
+                                aria-current="page" href="{% url 'new_event' %}" style="color: white;">
+                                <span data-feather="bar-chart-2" class="me-3"></span> Add Event
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+</nav>

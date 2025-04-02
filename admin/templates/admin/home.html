@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .counter {
+            color: #fff;
+            background: linear-gradient(to right bottom, rgb(115, 223, 213), #44423f);
+            font-family: 'Dosis', sans-serif;
+            text-align: center;
+            width: 180px;
+            height: 180px;
+            padding: 40px 20px 20px;
+            margin: 0 auto;
+            border-radius: 10px 10px 100px 100px; /* Default shape (rounded with a curved bottom) */
+            box-shadow: 0 0 15px -5px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Specific shape for the Alumni counter */
+        .alumni-counter {
+            border-radius: 0; /* Square shape */
+        }
+
+        .counter:after {
+            content: '';
+            background-color: rgb(94, 198, 206);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+
+        .counter .counter-value {
+            font-size: 55px;
+            font-weight: 600;
+            line-height: 40px;
+            margin: 0 0 15px;
+            display: block;
+        }
+
+        .counter h3 {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% block sidebar %}
+{% include "admin/components/sidebar.html" %}
+{% endblock %}
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-5 mb-4 border-bottom">
+    </div>
+    <br>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <!-- Alumni counter with square shape -->
+                <div class="counter alumni-counter">
+                    <span class="counter-value">{{alumni}}</span>
+                    <h3>Alumni</h3>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="counter alumni-counter">
+                    <span class="counter-value">{{students}}</span>
+                    <h3>Students</h3>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="counter alumni-counter">
+                    <span class="counter-value">{{events}}</span>
+                    <h3>Events</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+</main>
+{% endblock %}
+
+</body>
+</html>
